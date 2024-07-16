@@ -1,9 +1,10 @@
 # About images
 
-The images array is an optional field that contains link(s) to image(s) of the street assets that communicate the regulations to curbspace users. For example, this array could link to photo(s) of a sign, parking meter, fire hydrant, curb paint, or other physical street asset that conveys the associated regulations to curbspace users.
+The images array is an optional field that contains link(s) to image(s) of the street assets that communicate the
+regulations to curbspace users. For example, this array could link to photo(s) of a sign, parking meter, fire hydrant,
+curb paint, or other physical street asset that conveys the associated regulations to curbspace users.
 
 Each image requires its own URL.
-
 
 # Example
 

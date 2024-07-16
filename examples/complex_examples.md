@@ -1,8 +1,12 @@
-The examples below include the regulation described by the sign, as well as sample GeoJSON coordinates and location properties. In any of these examples, the `priorityHierarchy` in the [metadata](Manifest.md) should list all of the priority categories included in the CurbLR feed, placed in order from highest priority to lowest.
-
+The examples below include the regulation described by the sign, as well as sample GeoJSON coordinates and location
+properties. In any of these examples, the `priorityHierarchy` in the [metadata](../Manifest.md) should list all the
+priority categories included in the CurbLR feed, placed in order from highest priority to lowest.
 
 # Time limited parking with permit exemption, planned to take effect 2020-02-20
-Any vehicle may park at this location, but vehicles without an 'F' or 'N' permit are limited to 2 hours between 9am and 6pm Monday through Friday. (The sign does not indicate whether parking is permitted outside of the specified time range - the "default" rule must be determined based on local context.)
+
+Any vehicle may park at this location, but vehicles without an 'F' or 'N' permit are limited to 2 hours between 9am and
+6pm Monday through Friday. (The sign does not indicate whether parking is permitted outside the specified time range -
+the "default" rule must be determined based on local context.)
 
 ### **Sign**
 
@@ -84,7 +88,9 @@ Any vehicle may park at this location, but vehicles without an 'F' or 'N' permit
 _[In this example, both rules have the same `priorityCategory` but they do not conflict because one of the rules has a userClass. However, a user could create a separate priorityCategory (e.g. "restricted parking", "permit parking", or "resident parking") if desired; the categories used in this documentation are just examples and can be modified as desired.]_
 
 # Time limited parking with permit exemption and multiple no parking periods
-No vehicles may park between 6pm and 8am daily due to overnight parking restrictions, or between 1pm and 3pm on Wednesday for street cleaning. Between 8am and 6pm, vehicles without a Zone 5 permit are limited to two hours.
+
+No vehicles may park between 6pm and 8am daily due to overnight parking restrictions, or between 1pm and 3pm on
+Wednesday for street cleaning. Between 8am and 6pm, vehicles without a Zone 5 permit are limited to two hours.
 
 ### **Sign**
 
@@ -194,7 +200,9 @@ No vehicles may park between 6pm and 8am daily due to overnight parking restrict
 ```
 
 # No parking for snow removal (fixed and variable times)
-Between December 1st and April 1st of each year, no one may park between 3am and 7am to facilitate snow removal. Parking is also prohibited when there is more than 2" of snow regardless of the time or date.
+
+Between December 1st and April 1st of each year, no one may park between 3am and 7am to facilitate snow removal. Parking
+is also prohibited when there is more than 2" of snow regardless of the time or date.
 
 ### **Sign**
 
@@ -268,7 +276,10 @@ Between December 1st and April 1st of each year, no one may park between 3am and
 ```
 
 # Dual allowed use and rush hour parking restriction
-No vehicles may stop between 7am and 9:30am or between 4pm and 6:30pm Monday through Friday. From 9:30am to 4pm and from 6:30pm to 7:30pm Monday through Friday may be used as 2 hour parking for vehicles with a handicap placard or as a 15 minute loading zone for all others.
+
+No vehicles may stop between 7am and 9:30am or between 4pm and 6:30pm Monday through Friday. From 9:30am to 4pm and from
+6:30pm to 7:30pm Monday through Friday may be used as 2 hour parking for vehicles with a handicap placard or as a
+15-minute loading zone for all others.
 
 ### **Sign**
 
@@ -371,7 +382,10 @@ No vehicles may stop between 7am and 9:30am or between 4pm and 6:30pm Monday thr
 ```
 
 # Complex time and user dependent regulations
-No vehicles may stop between 3:30pm and 6:30pm Monday through Friday. Truck loading zone only between 6am and 10am Monday through Friday with a one hour limit. Two hour parking allowed between 10am and 3:30pm Monday through Friday, 6:30pm and 10pm Monday through Friday, and 8am to 10pm Saturday and Sunday.
+
+No vehicles may stop between 3:30pm and 6:30pm Monday through Friday. Truck loading zone only between 6am and 10am
+Monday through Friday with a one-hour limit. Two hour parking allowed between 10am and 3:30pm Monday through Friday, 6:
+30pm and 10pm Monday through Friday, and 8am to 10pm Saturday and Sunday.
 
 ### **Sign**
 
@@ -483,7 +497,10 @@ No vehicles may stop between 3:30pm and 6:30pm Monday through Friday. Truck load
 ```
 
 # Combination permit only and meter parking with user-specific payment rules
-Only vehicles with a Zone F permit may park from 6:30pm to 8:00pm Monday through Saturday, and from 2pm to 4pm on Saturday. Anyone may park from 9am until 6:30pm Monday through Friday, and from 9am to 2pm and 4pm to 6:30pm on Saturday, but vehicles without a Zone F permit must pay.
+
+Only vehicles with a Zone F permit may park from 6:30pm to 8:00pm Monday through Saturday, and from 2pm to 4pm on
+Saturday. Anyone may park from 9am until 6:30pm Monday through Friday, and from 9am to 2pm and 4pm to 6:30pm on
+Saturday, but vehicles without a Zone F permit must pay.
 
 ### **Sign**
 
@@ -618,7 +635,10 @@ Only vehicles with a Zone F permit may park from 6:30pm to 8:00pm Monday through
 _[This example does not use the `paid parking` priority category described in other examples because it would supercede the permit parking (implying that users had to pay regardless of permit status). Depending on a city's context and how it plans to map rules, a user could create a hybrid "paid or permit parking" category, two separate categories for permit and paid parking, or could combine all these rules into "parking".]_
 
 # School loading zone, time limited parking with permit exemption, and multiple no parking periods
-On school days only 5 minute passenger loading is permitted from 6:30am to 9am and from 1:30pm to 4pm. No vehicles may park between 6pm and 8am daily due to overnight parking restrictions, or between 10am and 1pm on Monday for street cleaning. Between 8am and 6pm, vehicles without a Zone 64 permit are limited to 2 hours.
+
+On school days only 5 minute passenger loading is permitted from 6:30am to 9am and from 1:30pm to 4pm. No vehicles may
+park between 6pm and 8am daily due to overnight parking restrictions, or between 10am and 1pm on Monday for street
+cleaning. Between 8am and 6pm, vehicles without a Zone 64 permit are limited to 2 hours.
 
 _[Note: The school day regulation overlaps with both the overnight no parking and the 2-hour allowed parking regulations. To avoid ambiguity about which rule is in effect, the school day regulation is given a higher priority than the other regulations.]_
 
@@ -758,4 +778,5 @@ _[Note: The school day regulation overlaps with both the overnight no parking an
   }
 }
 ```
+
 _[The priorityHierarchy in the metadata would include "loading", "street cleaning", "no parking", and "parking", in that order.]_
