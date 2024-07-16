@@ -1,0 +1,70 @@
+name: Update Portland References in Markdown
+
+on:
+  push:
+    paths:
+      - conversions/Portland/downtown_portland_*.curblr.json
+    branches:
+      - master
+
+jobs:
+  update-references:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2  # for master^
+
+      - name: Get new and old portland file names
+        id: filenames
+        run: |
+          NEW_FILE=$(git diff --name-only master^ master | grep 'conversions/Portland/downtown_portland_.*\.curblr\.json' || echo "")
+          if [ -z "$NEW_FILE" ]; then
+            echo "No new file detected"
+            exit 1
+          fi
+          echo "New file: $NEW_FILE"
+
+          OLD_FILE=$(git ls-tree -r master^ --name-only | grep 'conversions/Portland/downtown_portland_.*\.curblr\.json' || echo "")
+          if [ -z "$OLD_FILE" ]; then
+            echo "No old file detected"
+            exit 1
+          fi
+          echo "Old file: $OLD_FILE"
+
+          echo "::set-output name=newfile::$NEW_FILE"
+          echo "::set-output name=oldfile::$OLD_FILE"
+
+      - name: Update references in Markdown files
+        if: ${{ steps.filenames.outputs.newfile != '' && steps.filenames.outputs.oldfile != '' }}
+        run: |
+          FILES_TO_UPDATE=("GeoJsonGeometry.md" "Location.md" "Manifest.md" "Payment.md" "Regulations.md" "Rule.md" "TimeSpans.md" "UserClasses.md")
+          OLD_FILE=${{ steps.filenames.outputs.oldfile }}
+          NEW_FILE=${{ steps.filenames.outputs.newfile }}
+          
+          echo "Replacing references from ${OLD_FILE} to ${NEW_FILE} in files: ${FILES_TO_UPDATE[@]}"
+          
+          for FILE in "${FILES_TO_UPDATE[@]}"; do
+            sed -i "s|${OLD_FILE}|${NEW_FILE}|g" "$FILE"
+          done
+
+          # git status
+          # git diff --cached
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add GeoJsonGeometry.md Location.md Manifest.md Payment.md Regulations.md Rule.md TimeSpans.md UserClasses.md
+          
+          # Check if there are any changes to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update portland references"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
